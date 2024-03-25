@@ -1,0 +1,42 @@
+{
+	"name": "node-arch",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"dev": "nodemon index.js",
+		"start": "node index.js",
+		"test": "NODE_ENV=test jest",
+		"coverage": "jest --coverage"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"jest": "^29.7.0",
+		"nodemon": "^3.1.0",
+		"sqlite3": "^5.1.7"
+	},
+	"jest": {
+		"collectCoverageFrom": [
+			"**/*.{js}",
+			"!**/node_modules/**",
+			"!**/vendor/**",
+			"!**/coverage/**"
+		],
+		"testURL": "http://localhost/"
+	},
+	"dependencies": {
+		"@hapi/boom": "^10.0.1",
+		"@hapi/hapi": "^21.3.7",
+		"@hapi/inert": "^7.1.0",
+		"@hapi/vision": "^7.0.3",
+		"blipp": "^4.0.2",
+		"dotenv": "^16.4.5",
+		"hapi-swagger": "^17.2.1",
+		"jsonwebtoken": "^9.0.2",
+		"mongoose": "^8.2.3",
+		"sequelize": "^6.37.1"
+	}
+}
