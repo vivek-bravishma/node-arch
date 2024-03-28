@@ -1,6 +1,11 @@
-import UserController from "../controllers/UserController";
+import UserController from "../controllers/UserController.js";
+import {
+	getUserByIdSchema,
+	createUserSchema,
+	updateUserSchema,
+} from "../validationSchemas/user/index.js";
 
-export default usersRoutes = {
+const usersRoutes = {
 	name: "users",
 	version: "1.0.0",
 	register: async (server) => {
@@ -21,6 +26,9 @@ export default usersRoutes = {
 				options: {
 					description: "Get a user by its {id}",
 					tags: ["api"],
+					validate: {
+						params: getUserByIdSchema,
+					},
 				},
 			},
 			{
@@ -30,6 +38,22 @@ export default usersRoutes = {
 				options: {
 					description: "Create a user",
 					tags: ["api"],
+					validate: {
+						payload: createUserSchema,
+					},
+				},
+			},
+			{
+				method: "PATCH",
+				path: "/users/{id}",
+				handler: UserController.updateUser,
+				options: {
+					description: "Update user",
+					tags: ["api"],
+					validate: {
+						params: getUserByIdSchema,
+						payload: updateUserSchema,
+					},
 				},
 			},
 			{
@@ -39,8 +63,13 @@ export default usersRoutes = {
 				options: {
 					description: "Delete a user by its {id}",
 					tags: ["api"],
+					validate: {
+						params: getUserByIdSchema,
+					},
 				},
 			},
 		]);
 	},
 };
+
+export default usersRoutes;

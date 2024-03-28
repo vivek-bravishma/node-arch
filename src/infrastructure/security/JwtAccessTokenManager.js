@@ -1,13 +1,13 @@
-import { sign, verify, decode } from "jsonwebtoken";
-import AccessTokenManager from "../../application/security/AccessTokenManager";
+import jwt from "jsonwebtoken";
+import AccessTokenManager from "../../application/security/AccessTokenManager.js";
 
 const JWT_SECRET_KEY = "mysecretkey";
 
 export default class JwtAccessTokenManager extends AccessTokenManager {
 	generate(payload) {
-		return sign(payload, JWT_SECRET_KEY);
+		return jwt.sign(payload, JWT_SECRET_KEY);
 	}
 	decode(accessToken) {
-		return verify(accessToken, JWT_SECRET_KEY);
+		return jwt.verify(accessToken, JWT_SECRET_KEY);
 	}
 }

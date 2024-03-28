@@ -1,6 +1,6 @@
 import User from "../../domain/User.js";
 
-export default CreateUser = (
+const CreateUser = (
 	firstName,
 	lastName,
 	email,
@@ -10,3 +10,5 @@ export default CreateUser = (
 	const user = new User(null, firstName, lastName, email, password);
 	return userRepository.persist(user);
 };
+
+export default CreateUser;

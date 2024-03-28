@@ -1,7 +1,7 @@
-import User from "../../domain/User";
-import MongooseUser from "../orm/mongoose/schemas/User";
+import User from "../../domain/User.js";
+import MongooseUser from "../orm/mongoose/schemas/User.js";
 
-import UserRepository from "../../domain/UserRepository";
+import UserRepository from "../../domain/UserRepository.js";
 
 export default class UserRepositoryMongo extends UserRepository {
 	constructor() {

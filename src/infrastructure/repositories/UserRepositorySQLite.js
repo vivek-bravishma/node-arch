@@ -1,6 +1,6 @@
-import User from "../../domain/User";
-import UserRepository from "../../domain/UserRepository";
-import sequelize from "../orm/sequelize/sequelize";
+import User from "../../domain/User.js";
+import UserRepository from "../../domain/UserRepository.js";
+import sequelize from "../orm/sequelize/sequelize.js";
 
 export default class UserRepositorySQLite extends UserRepository {
 	constructor() {
@@ -20,7 +20,7 @@ export default class UserRepositorySQLite extends UserRepository {
 		await seqUser.save();
 
 		return new User(
-			seqUser._id,
+			seqUser.id,
 			seqUser.firstName,
 			seqUser.lastName,
 			seqUser.email,
@@ -36,7 +36,7 @@ export default class UserRepositorySQLite extends UserRepository {
 		await seqUser.update({ firstName, lastName, email, password });
 
 		return new User(
-			seqUser._id,
+			seqUser.id,
 			seqUser.firstName,
 			seqUser.lastName,
 			seqUser.email,
@@ -53,7 +53,7 @@ export default class UserRepositorySQLite extends UserRepository {
 	async get(userId) {
 		const seqUser = await this.model.findByPk(userId);
 		return new User(
-			seqUser._id,
+			seqUser.id,
 			seqUser.firstName,
 			seqUser.lastName,
 			seqUser.email,
@@ -65,7 +65,7 @@ export default class UserRepositorySQLite extends UserRepository {
 			where: { email: userEmail },
 		});
 		return new User(
-			seqUser._id,
+			seqUser.id,
 			seqUser.firstName,
 			seqUser.lastName,
 			seqUser.email,
@@ -76,7 +76,7 @@ export default class UserRepositorySQLite extends UserRepository {
 		const seqUsers = await this.model.findAll();
 		return seqUsers.map((seqUser) => {
 			return new User(
-				seqUser._id,
+				seqUser.id,
 				seqUser.firstName,
 				seqUser.lastName,
 				seqUser.email,

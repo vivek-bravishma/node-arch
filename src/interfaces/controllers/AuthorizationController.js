@@ -1,8 +1,8 @@
 import Boom from "@hapi/boom";
-import GetAccessToken from "../../application/use_cases/GetAccessToken";
-import VerifyAccessToken from "../../application/use_cases/VerifyAccessToken";
+import GetAccessToken from "../../application/use_cases/GetAccessToken.js";
+import VerifyAccessToken from "../../application/use_cases/VerifyAccessToken.js";
 
-export default AuthorizationController = {
+const AuthorizationController = {
 	async getAccessToken(request) {
 		const serviceLocator = request.server.app.serviceLocator;
 
@@ -55,3 +55,5 @@ export default AuthorizationController = {
 		}
 	},
 };
+
+export default AuthorizationController;

@@ -1,5 +1,5 @@
-import User from "../../domain/User";
-import UserRepository from "../../domain/UserRepository";
+import User from "../../domain/User.js";
+import UserRepository from "../../domain/UserRepository.js";
 
 export default class UserRepositoryInMemory extends UserRepository {
 	_initializeRepositoryWithTwoUsers() {

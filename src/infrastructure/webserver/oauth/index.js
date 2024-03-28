@@ -1,10 +1,11 @@
-import AuthorizationController from "../../../interfaces/controllers/AuthorizationController";
+import AuthorizationController from "../../../interfaces/controllers/AuthorizationController.js";
+import scheme from "./scheme.js";
 
 export default {
 	name: "oauth",
 	version: "1.0.0",
-	register: async (server) => {
-		server.auth.scheme("oauth", await import("./scheme"));
+	register: (server) => {
+		server.auth.scheme("oauth", scheme);
 		server.auth.strategy("oauth-jwt", "oauth");
 		server.route([
 			{

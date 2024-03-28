@@ -1,3 +1,3 @@
-export default SayHello = (name='world') => {
+export default async function SayHello(name = "world") {
 	return `Hello ${name}!`;
-};
+}

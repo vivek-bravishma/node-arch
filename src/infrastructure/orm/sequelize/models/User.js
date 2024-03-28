@@ -1,4 +1,4 @@
-export default User = (sequelize, DataTypes) => {
+export default async function User(sequelize, DataTypes) {
 	sequelize.define(
 		"user",
 		{
@@ -21,4 +21,4 @@ export default User = (sequelize, DataTypes) => {
 		},
 		{}
 	);
-};
+}

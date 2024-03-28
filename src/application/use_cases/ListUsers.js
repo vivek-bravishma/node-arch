@@ -1,3 +1,3 @@
-export default ListUsers = ({ userRepository }) => {
+export default async function ListUsers({ userRepository }) {
 	return userRepository.find();
-};
+}

@@ -1,21 +1,33 @@
 import Boom from "@hapi/boom";
-import ListUsers from "../../application/use_cases/ListUsers";
-import CreateUser from "../../application/use_cases/CreateUser";
-import GetUser from "../../application/use_cases/GetUser";
-import DeleteUser from "../../application/use_cases/DeleteUser";
+import ListUsers from "../../application/use_cases/ListUsers.js";
+import CreateUser from "../../application/use_cases/CreateUser.js";
+import GetUser from "../../application/use_cases/GetUser.js";
+import DeleteUser from "../../application/use_cases/DeleteUser.js";
+import UpdateUser from "../../application/use_cases/UpdateUser.js";
 
-export default UserController = {
+const UserController = {
 	async createUser(request) {
 		const serviceLocator = request.server.app.serviceLocator;
 		const { firstName, lastName, email, password } = request.payload;
 
-		const user = await CreateUser({
+		const user = await CreateUser(
 			firstName,
 			lastName,
 			email,
 			password,
-			serviceLocator,
-		});
+			serviceLocator
+		);
+
+		return serviceLocator.userSerializer.serialize(user);
+	},
+
+	async updateUser(request) {
+		const serviceLocator = request.server.app.serviceLocator;
+
+		const userId = request.params.id;
+		const { firstName, lastName, email, password } = request.payload;
+
+		const user = await UpdateUser(userId, request.payload, serviceLocator);
 
 		return serviceLocator.userSerializer.serialize(user);
 	},
@@ -46,3 +58,5 @@ export default UserController = {
 		return h.response().code(204);
 	},
 };
+
+export default UserController;

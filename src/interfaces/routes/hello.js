@@ -1,6 +1,6 @@
-import HelloController from "../controllers/HelloController";
+import HelloController from "../controllers/HelloController.js";
 
-export default helloRoutes = {
+const helloRoutes = {
 	name: "hello",
 	version: "1.0.0",
 	register: async (server) => {
@@ -26,3 +26,5 @@ export default helloRoutes = {
 		]);
 	},
 };
+
+export default helloRoutes;

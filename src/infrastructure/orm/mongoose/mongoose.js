@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import environment from "../../config/environment";
+import environment from "../../config/environment.js";
 
 mongoose.connect(environment.database.url);
 

@@ -3,8 +3,16 @@ import Inert from "@hapi/inert";
 import Vision from "@hapi/vision";
 import Blipp from "blipp";
 import hapiswagger from "hapi-swagger";
+import Joi from "joi";
 
-export default createServer = async () => {
+import oauth from "./oauth/index.js";
+import helloRoutes from "../../interfaces/routes/hello.js";
+import privateRoutes from "../../interfaces/routes/private.js";
+import usersRoutes from "../../interfaces/routes/users.js";
+
+import buildBeans from "../../infrastructure/config/service-locator.js";
+
+const createServer = async () => {
 	const server = Hapi.server({ port: process.env.PORT || 3000 });
 
 	await server.register([
@@ -19,16 +27,22 @@ export default createServer = async () => {
 		},
 	]);
 
-	await server.register([
-		await import("./oauth"),
-		await import("../../interfaces/routes/hello"),
-		await import("../../interfaces/routes/private"),
-		await import("../../interfaces/routes/users"),
-	]);
+	await server.register([oauth, helloRoutes, privateRoutes, usersRoutes]);
 
-	server.app.serviceLocator = await import(
-		"../../infrastructure/config/service-locator"
-	);
+	// await server.register([
+	// 	await import("./oauth/index.js"),
+	// 	await import("../../interfaces/routes/hello.js"),
+	// 	await import("../../interfaces/routes/private.js"),
+	// 	await import("../../interfaces/routes/users.js"),
+	// ]);
+
+	server.app.serviceLocator = await buildBeans();
+
+	// server.app.serviceLocator = await import(
+	// 	"../../infrastructure/config/service-locator.js"
+	// );
 
 	return server;
 };
+
+export default createServer;

@@ -33,7 +33,8 @@ export default class Bootstrap {
 	async initSequelize() {
 		//Initialize in-memory database
 		// const sequelize = require('../orm/sequelize/sequelize');
-		const sequelize = await import("../orm/sequelize/sequelize.js");
+		const sequelize = (await import("../orm/sequelize/sequelize.js"))
+			.default;
 
 		try {
 			await sequelize.sync();

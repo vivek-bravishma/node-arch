@@ -1,9 +1,13 @@
-import { Sequelize, DataType } from "sequelize";
-import environment from "../../config/environment";
-import User from "./models/User";
+import { Sequelize } from "sequelize";
+import environment from "../../config/environment.js";
+import User from "./models/User.js";
 
-const sequelize = new Sequelize(environment.database.url);
+console.log("db uri", environment.database.url);
+const sequelize = new Sequelize({
+	dialect: environment.database.dialect,
+	storage: environment.database.url,
+});
 
-User(sequelize, DataType);
+User(sequelize, Sequelize);
 
 export default sequelize;

@@ -1,4 +1,4 @@
-export default constants = {
+const constants = {
 	SUPPORTED_DATABASE: {
 		IN_MEMORY: "in-memory",
 		MONGO: "mongo",
@@ -6,3 +6,5 @@ export default constants = {
 		SQLITE: "sqlite",
 	},
 };
+
+export default constants;

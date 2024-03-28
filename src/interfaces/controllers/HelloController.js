@@ -1,6 +1,6 @@
-import SayHello from "../../application/use_cases/SayHello";
+import SayHello from "../../application/use_cases/SayHello.js";
 
-export default HelloController = {
+const HelloController = {
 	sayHelloWorld() {
 		return SayHello();
 	},
@@ -9,3 +9,5 @@ export default HelloController = {
 		return SayHello(request.params.name);
 	},
 };
+
+export default HelloController;

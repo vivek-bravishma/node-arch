@@ -1,4 +1,4 @@
-export default privateRoutes = {
+const privateRoutes = {
 	name: "private",
 	version: "1.0.0",
 	register: async (server) => {
@@ -16,3 +16,5 @@ export default privateRoutes = {
 		]);
 	},
 };
+
+export default privateRoutes;
